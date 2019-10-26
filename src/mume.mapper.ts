@@ -1089,10 +1089,10 @@ class MumeMapDisplay
 
     // PIXI elements
     private roomDisplays: SpatialIndex<PIXI.Container>;
-    private herePointer: PIXI.DisplayObject;
+    private herePointer!: PIXI.DisplayObject;
     private layers: Array<PIXI.Container> = [];
-    private pixi: PIXI.Application;
-    private initialHint: PIXI.Text;
+    private pixi!: PIXI.Application;
+    private initialHint!: PIXI.Text;
 
     // Use load() instead if the assets might not have been loaded yet.
     constructor( containerElementName: string, mapData: MumeMapData )
@@ -1123,9 +1123,8 @@ class MumeMapDisplay
     /* Installs the viewport into the DOM. */
     public installMap( containerElementName: string ): void
     {
-        this.pixi = new PIXI.Application( { autoStart: false, } );
+        this.pixi = new PIXI.Application( { autoStart: false, backgroundColor: 0x6e6e6e, } );
         this.pixi.renderer.autoResize = true;
-        this.pixi.renderer.backgroundColor = 0x6e6e6e;
 
         let stub = document.getElementById( containerElementName );
         if ( stub == null || stub.parentElement == null )
@@ -1523,12 +1522,12 @@ export class MumeXmlParser
     // instanceof doesn't work cross-window
     private readonly isMumeXmlParser = true;
 
-    private tagStack: Array<MumeXmlParserTag>;
-    private plainText: string;
-    private mode: MumeXmlMode;
+    private tagStack!: Array<MumeXmlParserTag>;
+    private plainText!: string;
+    private mode!: MumeXmlMode;
     private xmlDesirableBytes: number = 0;
     private decaf: DecafMUD;
-    private scouting: ScoutingState
+    private scouting!: ScoutingState
 
     constructor( decaf: DecafMUD )
     {

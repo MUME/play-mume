@@ -1,73 +1,63 @@
 # Play MUME!
 
-A modern web client for MUME using DecafMUD.
+A modern web client for MUME using DecafMUD that is hosted on
+[mume.org](https://mume.org/play/browser).
 
 The target audience is new players who don't want to install desktop
 applications to test MUME, and other players who can't use their usual setup
 for some reason (not at home etc). It is not intended to replace a
 full-featured client + mapper.
 
-## I Just Want to Play
-
-Go to http://mume.org/Client/ and click `Play MUME!`.
-
 ## I Want to Host a Copy of Play MUME!
 
-It is a Bad Idea to host a copy of Play MUME! for general usage, because you'd
-encourage players to input their MUME passwords into random websites, exposing
-them to credentials phishing.
+It is a Bad Idea to self-host a copy of Play MUME! for general usage because
+you will encourage players to input their MUME passwords into random websites
+and expose themselves to phishing attacks.
 
-Please contact me (Waba) before doing this. We'll discuss other options.
-
-Nevertheless:
-- You would need a copy of Play MUME!, the Javascript 3rd party libraries, and
-  the map data. Visit the
-  [releases](https://github.com/waba4mume/play-mume/releases) section on Github
-  and download a recent `play-mume-vX.Y.Z.zip` archive, it should contain
-  everything you need.
-- You would need to host Play MUME! on a HTTP(S) web server, as the browser
-  security model is incompatible with local `file:` resources.
-- You would need a WebSocket Server.
+Please contact the Valar on MUME before doing this. We'll discuss other options.
 
 ## I Want to Contribute to Play MUME!
 
 Great! You'll need a little setup described below. If you get stuck, do not
-hesitate to contact me (Waba)!
+hesitate to contact the Valar on MUME!
 
-### Forking my repositories
+### Forking the repositories
 
-The Github contribution workflow supposes that you sign up on Github and fork
-my two repositories, [DecafMUD](https://github.com/waba4mume/DecafMUD/) and
-[Play MUME!](https://github.com/waba4mume/play-mume/).
+The Github contribution workflow requires that you sign up on Github and fork
+the two repositories, [DecafMUD](https://github.com/MUME/DecafMUD/) and
+[Play MUME!](https://github.com/MUME/play-mume/).
 
-Doing so now will save you time later when you want to send me patches (Pull
-Requests).
+Doing so now will save you time later when you want to send pull requests.
 
-In this document I'll use `YOU` as a placeholder for your Github username. You
-could skip this step and use `waba4mume` as `YOU`, but you'll eventually have
+In this document we will use `YOU` as a placeholder for your Github username.
+You could skip this step and use `MUME` as `YOU`, but you'll eventually have
 to sign up, fork, and then replace your remote URLs (an advanced topic).
 
 Github has a [4 mins
 tutorial](https://guides.github.com/activities/hello-world/) on forking
-repositories and sending Pull Requests.
+repositories and sending pull requests.
 
 ### Getting the Source Code
 
 The `index.html` of this project expects to be installed alongside with
 DecafMUD, like this:
 
-    mume/               # Or whatever
-        DecafMUD/       # Clone of https://github.com/YOU/DecafMUD/
-        play/           # Clone of https://github.com/YOU/play-mume/
-            index.html  # point your browser here (/mume/play/)
+    play/           # Clone of https://github.com/YOU/play-mume/
+        index.html  # point your browser here (/play/)
+        DecafMUD/   # Clone of https://github.com/YOU/DecafMUD/
 
 So, assuming you are in your project directory and are using the `git`
 command-line software, run:
 
-    git clone https://github.com/YOU/DecafMUD.git
     git clone https://github.com/YOU/play-mume.git play
+    cd play
+    git submodule update --init
+    cd DecafMUD
+    git remote add YOU https://github.com/YOU/DecafMud.git
+    git fetch YOU
+    git checkout YOU master
 
-Remember to replace `YOU` by your Github username.
+Remember to replace `YOU` with your Github username.
 
 Adapt these instructions if you are using a graphical Git client to get the
 above directory layout.
@@ -75,9 +65,21 @@ above directory layout.
 ### Compiling the Source Code
 
 The best part of Play MUME! is written in TypeScript (`src/*`) and will need to
-be compiled to JavaScript (`build/*`) before your browser can use it. You will
-need to install TypeScript compiler from https://www.typescriptlang.org and run
-in `play`:
+be compiled to JavaScript (`build/*`) before your browser can use it.
+
+#### Docker
+
+You can use `docker-compose` to quickly get a working developer environment up
+and running. This will run the TypeScript compiler and expose Play MUME! on
+port 4000 running on node.js within a Docker container:
+
+    docker-compose up --build
+
+#### Alternative
+
+If you do not want to use Docker you will need to set up your developer
+environment manually. You will need to install TypeScript compiler from
+https://www.typescriptlang.org and run in `play`:
 
     tsc
 
@@ -87,15 +89,20 @@ produce more features in less time. Try it with a [compatible
 editor](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
 and you'll love it too!
 
-### Getting the Third-party Libraries
+#### Getting the Third-party Libraries
 
 Play MUME! relies on a few 3rd-party Javascript libraries. As I didn't
 integrate with NPM or Yarn yet, you'll have to download them by hand into the
-`libs/` directory. See `libs/README.txt` for the instructions.
+`node_modules/` directory. See `node_modules/README.txt` for the instructions.
 
 Or just grab the `libs` folder from a recent
-[release](https://github.com/waba4mume/play-mume/releases)'s
+[release](https://github.com/MUME/play-mume/releases)'s
 `play-mume-vX.Y.Z.zip`.
+
+If you're using `docker-compose` you can enter into the container and grab the
+libraries out:
+
+    docker exec -it play_play-mume_1 sh
 
 ### Getting Map Data
 
@@ -122,8 +129,8 @@ for testing purposes you can use:
 After one of these commands starts succesfully, point your browser to
 http://127.0.0.1:8000/play/.
 
-Just keep the current settings in index.html and you'll use my WebSocket proxy.
-That will save you trouble setting one up.
+Just keep the current settings in index.html and you'll use the official MUME
+WebSocket proxy.
 
 ### Testing
 
@@ -134,7 +141,7 @@ If everything went well, you should see your very own Play MUME! running on
 
 This is where you reap the benefit of the forks above. Write awesome commits
 (possibly in a [feature branch](https://guides.github.com/introduction/flow/)),
-send me a Pull Request, *et voilà*!
+send a pull request, *et voilà*!
 
 ## About the WebSocket Proxy
 
@@ -143,30 +150,10 @@ streams (such as Telnet for MUDs) inside HTTP(S).
 
 ### Javascript (Client-Side) Configuration
 
-`index.html` configures the DecafMUD Javascript code to connect to
-`https://mume.org/ws-play/` with these settings:
+`index.html` configures the DecafMUD Javascript code to securely connect to
+MUME's official WebSocket URL at `https://mume.org/ws-play/` with these
+settings:
 - `host` set to `mume.org`
 - `set_socket.wspath` set to `ws-play/`
 - `set_socket.wsport` set to 443 (`*`)
 - `set_socket.ssl` set to true (`*`)
-
-### How to Bypass Firewalls
-
-There are two important points (`*`) here, that makes this client compatible with
-most corporate/school firewalls, by looking no different from a connection to
-https://www.google.com:
-- The WebSocket stream (which carries the Telnet payload) is encrypted (https).
-- That HTTPS stream uses the standard port.
-
-### Server Setup
-
-I'm currently using Websockify as the WebSocket endpoint (unproxying the Telnet
-connections to mume.org). I'll replace it later by something that supports
-MUD features.
-
-If you wish to hide your WebSocket inside HTTPS (as I recommend), you'll need
-Apache 2.4, `mod_proxy`, `mod_proxy_wstunnel` and a configuration line like
-this in your Apache configuration:
-
-    Proxypass /mume/play/websocket ws://localhost:1080 retry=0
-

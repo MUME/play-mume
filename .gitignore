@@ -1,5 +1,4 @@
 .*.swp
-libs/*.js
-libs/*.ts
-built/*.js
 mapdata
+node_modules/*.js
+node_modules/*.map

@@ -3,26 +3,26 @@
 <head>
     <title>Play MUME!</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../DecafMUD/src/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="../DecafMUD/src/css/mud-colors.css" />
-    <link rel="stylesheet" type="text/css" href="../DecafMUD/src/css/decafmud.css" />
-    <link rel="stylesheet" type="text/css" href="../DecafMUD/src/css/decafmud-dark.css" />
+    <link rel="stylesheet" type="text/css" href="DecafMUD/src/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="DecafMUD/src/css/mud-colors.css" />
+    <link rel="stylesheet" type="text/css" href="DecafMUD/src/css/decafmud.css" />
+    <link rel="stylesheet" type="text/css" href="DecafMUD/src/css/decafmud-dark.css" />
     <link rel="stylesheet" type="text/css" href="play.css" />
     <script src="errorhandler.js" type="text/javascript"></script>
-    <script src="libs/jquery-3.2.1.js" type="text/javascript"></script>
-    <script src="libs/jquery.ba-throttle-debounce.min.js" type="text/javascript"></script>
-    <script src="libs/split.min.js" type="text/javascript"></script>
-    <script src="libs/pixi.js" type="text/javascript"></script>
-    <script src="libs/spark-md5.min.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.display.standard.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.encoding.iso885915.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.socket.websocket.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.storage.standard.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.interface.panels.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.interface.panels.menu.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/decafmud.interface.panels.settings.js" type="text/javascript"></script>
-    <script src="../DecafMUD/src/js/dragelement.js" type="text/javascript"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="node_modules/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js" type="text/javascript"></script>
+    <script src="node_modules/split.js/dist/split.min.js" type="text/javascript"></script>
+    <script src="node_modules/pixi.js/dist/pixi.min.js" type="text/javascript"></script>
+    <script src="node_modules/spark-md5/spark-md5.min.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.display.standard.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.encoding.iso885915.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.socket.websocket.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.storage.standard.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.interface.panels.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.interface.panels.menu.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/decafmud.interface.panels.settings.js" type="text/javascript"></script>
+    <script src="DecafMUD/src/js/dragelement.js" type="text/javascript"></script>
     <script src="mume.macros.js" type="text/javascript"></script>
     <script src="mume.menu.js" type="text/javascript"></script>
     <script src="built/mume.mapper.js" type="text/javascript"></script>
@@ -59,7 +59,7 @@
                 set_socket              : {
                     // Flash Specific
                     policyport      : undefined, // Undefined = 843
-                    swf             : '../DecafMUD/src/flash/DecafMUDFlashSocket.swf',
+                    swf             : 'DecafMUD/src/flash/DecafMUDFlashSocket.swf',
 
                     // WebSocket Specific
                     wsport          : 443,
