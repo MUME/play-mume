@@ -1459,7 +1459,7 @@ class ScoutingState
                 this.active = false;
                 console.log( "Done scouting." );
             }
-            else if ( this.scoutingBytes > 1024 )
+            else if ( this.scoutingBytes > 102400 )
             {
                 this.active = false;
                 console.warn( "Force-disabling scout mode after a while" );
