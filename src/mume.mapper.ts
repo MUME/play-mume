@@ -844,25 +844,268 @@ namespace Mm2Gfx
     type RoadKind = "road" | "trail";
     type ExtraKind = "mob" | "load";
 
-    const MOB_FLAGS = 15;
-    const LOAD_FLAGS = 16;
+    const MOB_FLAGS = 17;
+    const LOAD_FLAGS = 24;
 
     function getSectorAssetPath( sector: number ): string
     {
         if ( sector < Sector.UNDEFINED || sector >= Sector.COUNT )
             sector = Sector.UNDEFINED;
 
-        return "resources/pixmaps/terrain" + sector + ".png";
+        let name: string = "undefined";
+        switch (sector) {
+            case Sector.UNDEFINED:
+                name = "undefined";
+                break;
+            case Sector.INSIDE:
+                name = "indoors";
+                break;
+            case Sector.CITY:
+                name = "city";
+                break;
+            case Sector.FIELD:
+                name = "field";
+                break;
+            case Sector.FOREST:
+                name = "forest";
+                break;
+            case Sector.HILLS:
+                name = "hills";
+                break;
+            case Sector.MOUNTAIN:
+                name = "mountains";
+                break;
+            case Sector.WATER_SHALLOW:
+                name = "shallow";
+                break;
+            case Sector.WATER:
+                name = "water";
+                break;
+            case Sector.WATER_NOBOAT:
+                name = "rapids";
+                break;
+            case Sector.UNDERWATER:
+                name = "underwater";
+                break;
+            case Sector.ROAD:
+                name = "road";
+                break;
+            case Sector.BRUSH:
+                name = "brush";
+                break;
+            case Sector.TUNNEL:
+                name = "tunnel";
+                break;
+            case Sector.CAVERN:
+                name = "cavern";
+                break;
+            case Sector.DEATHTRAP:
+                name = "deathtrap";
+                break;
+            default:
+                console.error("unable to load a texture for sector %d", sector);
+        };
+        return "resources/pixmaps/terrain-" + name + ".png";
     }
 
     function getRoadAssetPath( dirsf: number, kind: RoadKind ): string
     {
-        return `resources/pixmaps/${kind}${dirsf}.png`;
+        let name: string = "none";
+        switch (dirsf) {
+            case 0:
+                name = "none";
+                break;
+            case 1:
+                name = "n";
+                break;
+            case 2:
+                name = "s";
+                break;
+            case 3:
+                name = "ns";
+                break;
+            case 4:
+                name = "e";
+                break;
+            case 5:
+                name = "ne";
+                break;
+            case 6:
+                name = "es";
+                break;
+            case 7:
+                name = "nes";
+                break;
+            case 8:
+                name = "w";
+                break;
+            case 9:
+                name = "nw";
+                break;
+            case 10:
+                name = "sw";
+                break;
+            case 11:
+                name ="nsw";
+                break;
+            case 12:
+                name = "ew";
+                break;
+            case 13:
+                name = "new";
+                break;
+            case 14:
+                name = "esw";
+                break;
+            case 15:
+                name = "all";
+                break;
+            default:
+                console.error("unable to load a texture for dirsf %d", dirsf);
+          }
+        return `resources/pixmaps/${kind}-${name}.png`;
     }
 
     function getExtraAssetPath( extra: number, kind: ExtraKind ): string
     {
-        return `resources/pixmaps/${kind}${extra}.png`;
+        let name: string = "";
+        if (kind === "mob")
+            switch (extra) {
+                case 0:
+                    name = "rent";
+                    break;
+                case 1:
+                    name = "shop";
+                    break;
+                case 2:
+                    name = "weaponshop";
+                    break;
+                case 3:
+                    name = "armourshop";
+                    break;
+                case 4:
+                    name = "foodshop";
+                    break;
+                case 5:
+                    name = "petshop";
+                    break;
+                case 6:
+                    name = "guild";
+                    break;
+                case 7:
+                    name = "scoutguild";
+                    break;
+                case 8:
+                    name = "mageguild";
+                    break;
+                case 9:
+                    name = "clericguild";
+                    break;
+                case 10:
+                    name = "warriorguild";
+                    break;
+                case 11:
+                    name = "rangerguild";
+                    break;
+                case 12:
+                    name = "aggmob";
+                    break;
+                case 13:
+                    name = "questmob";
+                    break;
+                case 14:
+                    name = "passivemob";
+                    break;
+                case 14:
+                    name = "elitemob";
+                    break;
+                case 15:
+                    name = "smob";
+                    break;
+                case 16:
+                    name = "milkable";
+                    break;
+                default:
+                  console.error("unable to load mob texture %d", extra);
+            }
+        else if (kind === "load")
+            switch (extra) {
+              case 0:
+                name = "treasure";
+                break;
+            case 1:
+                name = "armour";
+                break;
+            case 2:
+                name = "weapon";
+                break;
+            case 3:
+                name = "water";
+                break;
+            case 4:
+                name = "food";
+                break;
+            case 5:
+                name = "herb";
+                break;
+            case 6:
+                name = "key";
+                break;
+            case 7:
+                name = "mule";
+                break;
+            case 8:
+                name = "horse";
+                break;
+            case 9:
+                name = "pack";
+                break;
+            case 10:
+                name = "trained";
+                break;
+            case 11:
+                name = "rohirrim";
+                break;
+            case 12:
+                name = "warg";
+                break;
+            case 13:
+                name = "boat";
+                break;
+            case 14:
+                name = "attention";
+                break;
+            case 15:
+                name = "watch";
+                break;
+            case 16:
+                name = "clock";
+                break;
+            case 17:
+                name = "mail";
+                break;
+            case 18:
+                name = "stable";
+                break;
+            case 19:
+                name = "whiteword";
+                break;
+            case 20:
+                name = "darkword";
+                break;
+            case 21:
+                name = "equipment";
+                break;
+            case 22:
+                name = "coach";
+                break;
+            case 23:
+                name = "ferry";
+                break;
+            default:
+              console.error("unable to load load texture %d", extra);
+            };
+        return `resources/pixmaps/${kind}-${name}.png`;
     }
 
     export function getAllAssetPaths(): Array<String>
@@ -918,6 +1161,9 @@ namespace Mm2Gfx
             {
                 let trailPath = getRoadAssetPath( dirsf, "trail" );
                 let trail = new PIXI.Sprite( PIXI.loader.resources[ trailPath ].texture );
+
+                // Just in case the trail and sector dimensions don't match
+                trail.scale.set( sector.width / trail.width, sector.height / trail.height );
 
                 display = new PIXI.Container();
                 sector.addChild( sector, trail );
@@ -1012,11 +1258,19 @@ namespace Mm2Gfx
 
         // Do not allocate a container for the common case of a single load flag
         if ( paths.length === 1 )
-            return new PIXI.Sprite( PIXI.loader.resources[ paths[0] ].texture );
+        {
+            let sprite: PIXI.Sprite = new PIXI.Sprite( PIXI.loader.resources[ paths[0] ].texture );
+            sprite.scale.set( ROOM_PIXELS / sprite.width, ROOM_PIXELS / sprite.height );
+            return sprite;
+        }
 
         let display = new PIXI.Container();
         for ( let path of paths )
-            display.addChild( new PIXI.Sprite( PIXI.loader.resources[ path ].texture ) );
+        {
+            let sprite: PIXI.Sprite = new PIXI.Sprite( PIXI.loader.resources[ path ].texture );
+            sprite.scale.set( ROOM_PIXELS / sprite.width, ROOM_PIXELS / sprite.height );
+            display.addChild( sprite );
+        }
         return display;
     }
 
@@ -1125,6 +1379,8 @@ class MumeMapDisplay
     {
         this.pixi = new PIXI.Application( { autoStart: false, backgroundColor: 0x6e6e6e, } );
         this.pixi.renderer.autoResize = true;
+
+        PIXI.settings.RESOLUTION = window.devicePixelRatio;
 
         let stub = document.getElementById( containerElementName );
         if ( stub == null || stub.parentElement == null )
