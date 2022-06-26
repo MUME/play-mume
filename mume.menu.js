@@ -50,14 +50,14 @@ function mume_menu_about_map()
         "\n" +
         "Both are Free and Open Source (GPLv2+).\n" +
         "\n" +
-        "Fork Play MUME! on Github: https://github.com/waba4mume/play-mume/\n" +
+        "Fork Play MUME! on Github: https://github.com/MUME/play-mume/\n" +
         "\n" +
         "The map data is covered by a separate license." );
 }
 
 function mume_menu_map_bug()
 {
-    window.open( 'https://github.com/waba4mume/play-mume/issues/new', 'mume_map_bug' );
+    window.open( 'https://github.com/MUME/play-mume/issues/new', 'mume_map_bug' );
 }
 
 function open_mume_map_window()
