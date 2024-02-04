@@ -135,6 +135,16 @@
 
                 $( window ).on( 'resize', $.throttle( 500, canvasFitParent ) );
                 canvasFitParent();
+
+                const mumeClientPanel = $('#mume-client-panel');
+
+                function handleSizeChange() {
+                    const isWide = mumeClientPanel.width() > 600;
+                    $('.decafmud.display.c7').css('white-space', isWide ? 'nowrap' : 'normal');
+                }
+
+                new ResizeObserver(handleSizeChange).observe(mumeClientPanel[0]);
+                handleSizeChange();
             } );
         } );
 
