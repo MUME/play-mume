@@ -235,9 +235,7 @@ class MumeMapIndex
 
         // MMapper applies these conversions to ensure the hashes in the index
         // are resilient to trivial changes.
-        return translitUnicodeToAsciiLikeMMapper( text )
-            .replace( / +/g, " " )
-            .replace( / *\r?\n/g, "\n" );
+        return translitUnicodeToAsciiLikeMMapper( text );
     }
 
     /* Returns a hash of the name+desc that identifies the chunk of the name+desc
@@ -247,7 +245,7 @@ class MumeMapIndex
     public static hashNameDesc( name: string, desc: string )
     {
         let normName = MumeMapIndex.normalizeString( name );
-        let normDesc = MumeMapIndex.normalizeString( desc );
+        let normDesc = MumeMapIndex.normalizeString( desc.replace(/\s+/g, " ") );
         let namedesc = normName + "\n" + normDesc;
 
         let hash = SparkMD5.hash( namedesc );
