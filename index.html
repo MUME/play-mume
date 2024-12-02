@@ -48,11 +48,14 @@
         var globalMapWindow, globalSplit, globalMap, canvasFitParent;
 
         $( window ).on( "load", function() {
+            var currentPort = window.location.protocol === "https:" ? 443 : 80;
+            var currentHost = window.location.hostname;
+
             DecafMUD.plugins.TextInputFilter.mumexml = Mapper.MumeXmlParser;
 
             new DecafMUD({
-                host: "mume.org",
-                port: 443,
+                host: currentHost,
+                port: currentPort,
                 autoreconnect	: false,
                 autoconnect : true,
 
@@ -63,9 +66,9 @@
                     swf             : 'DecafMUD/src/flash/DecafMUDFlashSocket.swf',
 
                     // WebSocket Specific
-                    wsport          : 443,
+                    wsport          : currentPort,
                     wspath          : 'ws-play/',
-                    ssl             : true
+                    ssl             : currentPort == 443
                 },
 
                 interface           : 'panels',
