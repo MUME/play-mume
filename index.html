@@ -156,6 +156,12 @@
             if ( globalMapWindow != undefined )
                 globalMapWindow.close();
         } );
+
+        if ( screen.availWidth < screen.availHeight )
+            alert( "It is not recommended to play MUME with a portrait orientation. "
+                 + "If on a mobile device, consider playing in landscape mode with an external keyboard"
+                 + " or on a desktop device for a better experience. "
+                 + "If on a vertical monitor, consider \"popping out\" (Options > Detach Map) the map." );
     </script>
 </head>
 <body>
