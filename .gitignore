@@ -1,4 +1,6 @@
 .*.swp
 mapdata
-node_modules/*.js
-node_modules/*.map
+node_modules/*
+built/
+package-lock.json
+.DS_Store
