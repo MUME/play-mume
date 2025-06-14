@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Compile TypeScript
+        run: npm run tsc
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Compile TypeScript
+        run: npm run tsc
+      - name: Prepare deployment directory
+        run: |
+          mkdir deploy_dir
+          cp index.html deploy_dir/
+          cp map.html deploy_dir/
+          cp play.css deploy_dir/
+          cp manifest.webmanifest deploy_dir/
+          cp sw.js deploy_dir/
+          cp -r resources/ deploy_dir/
+          cp -r built/ deploy_dir/
+          cp -r DecafMUD/ deploy_dir/
+          cp -r icons/ deploy_dir/
+
+          # Create directories for specific node_modules files and copy them
+          mkdir -p deploy_dir/node_modules/jquery/dist/
+          cp node_modules/jquery/dist/jquery.min.js deploy_dir/node_modules/jquery/dist/
+
+          mkdir -p deploy_dir/node_modules/jquery-throttle-debounce/
+          cp node_modules/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js deploy_dir/node_modules/jquery-throttle-debounce/
+
+          mkdir -p deploy_dir/node_modules/split.js/dist/
+          cp node_modules/split.js/dist/split.min.js deploy_dir/node_modules/split.js/dist/
+
+          mkdir -p deploy_dir/node_modules/pixi.js/dist/
+          cp node_modules/pixi.js/dist/pixi.min.js deploy_dir/node_modules/pixi.js/dist/
+
+          mkdir -p deploy_dir/node_modules/spark-md5/
+          cp node_modules/spark-md5/spark-md5.min.js deploy_dir/node_modules/spark-md5/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy_dir
+          publish_branch: gh-pages
+          keep_files: false
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy to GitHub Pages'
+          full_commit_message: 'Deploy to GitHub Pages'
