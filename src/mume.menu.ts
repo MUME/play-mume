@@ -15,10 +15,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-declare const MENU_HELP: any;
-declare const MI_SUBMENU: any;
-declare const MENU_OPTIONS: any;
-declare let toolbar_menus: any;
+import $ from 'jquery';
 
 interface GlobalMapHere {
     x: number;
@@ -42,17 +39,19 @@ declare let globalSplit: GlobalSplit | null | undefined;
 declare function canvasFitParent(): void;
 declare let globalMapWindow: Window | null;
 
-toolbar_menus[MENU_HELP][MI_SUBMENU].unshift(
-    'New to MUME?', 'mume_menu_new();',
-    'MUME Help',    'mume_menu_help();',
-    'MUME Rules',   'mume_menu_rules();' );
+$(document).ready(function() {
+    window.toolbar_menus[MENU_HELP][MI_SUBMENU].unshift(
+        'New to MUME?', 'mume_menu_new();',
+        'MUME Help',    'mume_menu_help();',
+        'MUME Rules',   'mume_menu_rules();' );
 
-toolbar_menus[MENU_HELP][MI_SUBMENU].push(
-    'About Map',     'mume_menu_about_map();',
-    'Map(per) Bug?', 'mume_menu_map_bug();', );
+    window.toolbar_menus[MENU_HELP][MI_SUBMENU].push(
+        'About Map',     'mume_menu_about_map();',
+        'Map(per) Bug?', 'mume_menu_map_bug();', );
 
-toolbar_menus[MENU_OPTIONS][MI_SUBMENU].unshift(
-    'Detach Map', 'open_mume_map_window();' );
+    window.toolbar_menus[MENU_OPTIONS][MI_SUBMENU].unshift(
+        'Detach Map', 'open_mume_map_window();' );
+});
 
 function mume_menu_new(): void
 {
@@ -89,14 +88,16 @@ function mume_menu_map_bug(): void
 
 function open_mume_map_window(): void
 {
-    let where: string | undefined;
-    let url: string;
-    if ( globalMap && globalMap.pathMachine && globalMap.pathMachine.here )
-        where = globalMap.pathMachine.here.x + "," +
-            globalMap.pathMachine.here.y + "," +
-            globalMap.pathMachine.here.z;
+    // let where: string | undefined; // Removed as it became unused after url refactoring
+    const url: string = (globalMap && globalMap.pathMachine && globalMap.pathMachine.here) ?
+        "map.html#" + globalMap.pathMachine.here.x + "," + globalMap.pathMachine.here.y + "," + globalMap.pathMachine.here.z :
+        "map.html";
+    // if ( globalMap && globalMap.pathMachine && globalMap.pathMachine.here ) // This check is now part of the ternary for url
+        // where = globalMap.pathMachine.here.x + "," + // where is actually not used further after this change
+            // globalMap.pathMachine.here.y + "," +
+            // globalMap.pathMachine.here.z; // This if block also removed as 'where' is removed
 
-    url = where ? "map.html#" + where : "map.html";
+    // url is now defined with const above using a ternary operator
     globalMapWindow = window.open( url, "mume_map", "dialog,minimizable,width=820,height=620" );
     if ( globalMapWindow === null )
     {
@@ -112,3 +113,10 @@ function open_mume_map_window(): void
         canvasFitParent();
     }
 }
+
+window.open_mume_map_window = open_mume_map_window;
+window.mume_menu_new = mume_menu_new;
+window.mume_menu_help = mume_menu_help;
+window.mume_menu_rules = mume_menu_rules;
+window.mume_menu_about_map = mume_menu_about_map;
+window.mume_menu_map_bug = mume_menu_map_bug;

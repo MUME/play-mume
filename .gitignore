@@ -2,5 +2,6 @@
 mapdata
 node_modules/*
 built/
+dist/
 package-lock.json
 .DS_Store

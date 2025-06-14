@@ -15,12 +15,31 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-declare interface DecafMUD
-{
-    socket: DecafMUDSocket;
+// src/decafmud.d.ts
+
+interface DecafMUDInstance {
+  textInputFilter?: any;
+  socket: DecafMUDSocket;
+  sendInput: (command: string) => void;
 }
 
-declare interface DecafMUDSocket
-{
-    write( data: string ): void;
+interface DecafMUDStatic {
+  new (options: any): DecafMUDInstance;
+  plugins?: {
+    TextInputFilter?: any;
+  };
+  instances?: DecafMUDInstance[];
 }
+
+declare var DecafMUD: DecafMUDStatic;
+
+declare interface DecafMUDSocket {
+  write(data: string): void;
+}
+
+declare const MENU_HELP: number;
+declare const MI_SUBMENU: number;
+declare const MENU_OPTIONS: number;
+
+declare function fkeys_enabled(): boolean;
+declare function numpad_enabled(): boolean;

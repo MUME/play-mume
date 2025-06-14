@@ -4,17 +4,11 @@
  * This file is originally from Discworld.
  */
 
-interface Decaf {
-  sendInput(command: string): void;
-}
-
-declare function fkeys_enabled(): boolean;
-declare function numpad_enabled(): boolean;
-
-function tryExtraMacro(decaf: Decaf, keycode: number): number {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Potentially used by global event handlers or index.html
+function tryExtraMacro(decaf: DecafMUDInstance, keycode: number): number {
   // f-key macros
   if (112 <= keycode && keycode <= 121 && fkeys_enabled()) {
-    var cmd = "f" + (keycode-111);
+    const cmd = "f" + (keycode-111);
     decaf.sendInput(cmd);
     return 1;
   }
@@ -41,9 +35,8 @@ function tryExtraMacro(decaf: Decaf, keycode: number): number {
   }
 
   // don't allow the tab key to do anything!
-  if (keycode == 9) return 1;
+  if (keycode == 9) return 1; // This was a comment, but it's functional code
 
   // anything else (not handled)
   return 0;
 }
-

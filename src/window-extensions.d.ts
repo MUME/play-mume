@@ -15,7 +15,34 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-declare class SparkMD5
-{
-    static hash(str: string): string;
+// src/window-extensions.d.ts
+
+declare global {
+  interface MenuItemArray extends Array<string> {
+  }
+
+  interface ToolbarSubmenu {
+    [miSubmenu: string]: MenuItemArray;
+  }
+
+  interface ToolbarMenus {
+    [menuHelpOrOptions: string]: ToolbarSubmenu;
+  }
+
+  interface Window {
+    toolbar_menus: ToolbarMenus;
+    Zlib?: {
+      InflateStream?: any;
+    };
+    DecafMUD?: DecafMUDStatic;
+    open_mume_map_window?: () => void;
+    mume_menu_new?: () => void;
+    mume_menu_help?: () => void;
+    mume_menu_rules?: () => void;
+    mume_menu_about_map?: () => void;
+    mume_menu_map_bug?: () => void;
+  }
+
 }
+
+export {};

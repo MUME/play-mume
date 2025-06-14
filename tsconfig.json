@@ -1,18 +1,16 @@
 {
     "compilerOptions": {
         "module": "commonjs", // Classic IIFE for now
-        "target": "es5",
+        "target": "es2021",
         "lib": [
-            "ES5",
-            // Both for jQuery
-            "DOM",
-            "ES2015.Iterable",
-            // Iterable declares containers as generics through an interface, but lack the implementation
-            "ES2015.Collection",
+            "es2021",
+            "dom"
         ],
         "strict": true,
         "preserveConstEnums": true,
-        "outDir": "built"
+        "outDir": "built",
+        "esModuleInterop": true,
+        "skipLibCheck": true
     },
     "include": [
         "src/**/*",
