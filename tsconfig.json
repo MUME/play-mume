@@ -12,7 +12,7 @@
         ],
         "strict": true,
         "preserveConstEnums": true,
-        "outDir": "built",
+        "outDir": "built"
     },
     "include": [
         "src/**/*",

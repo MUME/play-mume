@@ -15,6 +15,33 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
+declare const MENU_HELP: any;
+declare const MI_SUBMENU: any;
+declare const MENU_OPTIONS: any;
+declare let toolbar_menus: any;
+
+interface GlobalMapHere {
+    x: number;
+    y: number;
+    z: number;
+}
+
+interface GlobalMapPathMachine {
+    here: GlobalMapHere | null | undefined;
+}
+
+interface GlobalMap {
+    pathMachine: GlobalMapPathMachine;
+}
+declare let globalMap: GlobalMap | null | undefined;
+
+interface GlobalSplit {
+    collapse(index: number): void;
+}
+declare let globalSplit: GlobalSplit | null | undefined;
+declare function canvasFitParent(): void;
+declare let globalMapWindow: Window | null;
+
 toolbar_menus[MENU_HELP][MI_SUBMENU].unshift(
     'New to MUME?', 'mume_menu_new();',
     'MUME Help',    'mume_menu_help();',
@@ -27,22 +54,22 @@ toolbar_menus[MENU_HELP][MI_SUBMENU].push(
 toolbar_menus[MENU_OPTIONS][MI_SUBMENU].unshift(
     'Detach Map', 'open_mume_map_window();' );
 
-function mume_menu_new()
+function mume_menu_new(): void
 {
     window.open('http://mume.org/newcomers.php', 'mume_new_players');
 }
 
-function mume_menu_help()
+function mume_menu_help(): void
 {
     window.open('http://mume.org/help.php', 'mume_help');
 }
 
-function mume_menu_rules()
+function mume_menu_rules(): void
 {
     window.open('http://mume.org/rules.php', 'mume_rules');
 }
 
-function mume_menu_about_map()
+function mume_menu_about_map(): void
 {
     alert(
         "Play MUME!, a modern web client for MUME using DecafMUD, is brought to you by Waba,\n" +
@@ -55,15 +82,16 @@ function mume_menu_about_map()
         "The map data is covered by a separate license." );
 }
 
-function mume_menu_map_bug()
+function mume_menu_map_bug(): void
 {
     window.open( 'https://github.com/MUME/play-mume/issues/new', 'mume_map_bug' );
 }
 
-function open_mume_map_window()
+function open_mume_map_window(): void
 {
-    var where, url;
-    if ( globalMap && globalMap.pathMachine.here )
+    let where: string | undefined;
+    let url: string;
+    if ( globalMap && globalMap.pathMachine && globalMap.pathMachine.here )
         where = globalMap.pathMachine.here.x + "," +
             globalMap.pathMachine.here.y + "," +
             globalMap.pathMachine.here.z;

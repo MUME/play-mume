@@ -4,7 +4,14 @@
  * This file is originally from Discworld.
  */
 
-function tryExtraMacro(decaf, keycode) {
+interface Decaf {
+  sendInput(command: string): void;
+}
+
+declare function fkeys_enabled(): boolean;
+declare function numpad_enabled(): boolean;
+
+function tryExtraMacro(decaf: Decaf, keycode: number): number {
   // f-key macros
   if (112 <= keycode && keycode <= 121 && fkeys_enabled()) {
     var cmd = "f" + (keycode-111);
