@@ -20,8 +20,12 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install
+      - name: Run ESLint
+        run: npm run lint:check
       - name: Compile TypeScript
         run: npm run tsc
+      - name: Run Webpack Development Build
+        run: npm run dev
       - name: Run tests
         run: npm test
 
@@ -39,36 +43,12 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install
-      - name: Compile TypeScript
-        run: npm run tsc
+      - name: Build with Webpack
+        run: npm run build
       - name: Prepare deployment directory
         run: |
           mkdir deploy_dir
-          cp index.html deploy_dir/
-          cp map.html deploy_dir/
-          cp play.css deploy_dir/
-          cp manifest.webmanifest deploy_dir/
-          cp sw.js deploy_dir/
-          cp -r resources/ deploy_dir/
-          cp -r built/ deploy_dir/
-          cp -r DecafMUD/ deploy_dir/
-          cp -r icons/ deploy_dir/
-
-          # Create directories for specific node_modules files and copy them
-          mkdir -p deploy_dir/node_modules/jquery/dist/
-          cp node_modules/jquery/dist/jquery.min.js deploy_dir/node_modules/jquery/dist/
-
-          mkdir -p deploy_dir/node_modules/jquery-throttle-debounce/
-          cp node_modules/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js deploy_dir/node_modules/jquery-throttle-debounce/
-
-          mkdir -p deploy_dir/node_modules/split.js/dist/
-          cp node_modules/split.js/dist/split.min.js deploy_dir/node_modules/split.js/dist/
-
-          mkdir -p deploy_dir/node_modules/pixi.js/dist/
-          cp node_modules/pixi.js/dist/pixi.min.js deploy_dir/node_modules/pixi.js/dist/
-
-          mkdir -p deploy_dir/node_modules/spark-md5/
-          cp node_modules/spark-md5/spark-md5.min.js deploy_dir/node_modules/spark-md5/
+          cp -r dist/. deploy_dir/
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

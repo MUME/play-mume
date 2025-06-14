@@ -1,35 +1,19 @@
 const CACHE_NAME = 'play-mume-cache-v1';
+// List of URLs to cache. These should match the paths of the files in the 'dist' directory.
 const urlsToCache = [
   '/',
   'index.html',
+  'map.html',
+  'main.bundle.js',
+  'map.bundle.js',
   'play.css',
-  'DecafMUD/src/css/main.css',
-  'DecafMUD/src/css/mud-colors.css',
-  'DecafMUD/src/css/decafmud.css',
-  'DecafMUD/src/css/decafmud-dark.css',
-  'node_modules/jquery/dist/jquery.min.js',
-  'node_modules/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js',
-  'node_modules/split.js/dist/split.min.js',
-  'node_modules/pixi.js/dist/pixi.min.js',
-  'node_modules/spark-md5/spark-md5.min.js',
-  'DecafMUD/src/js/decafmud.js',
-  'DecafMUD/src/js/decafmud.display.standard.js',
-  'DecafMUD/src/js/decafmud.encoding.iso885915.js',
-  'DecafMUD/src/js/decafmud.socket.websocket.js',
-  'DecafMUD/src/js/decafmud.storage.standard.js',
-  'DecafMUD/src/js/decafmud.interface.panels.js',
-  'DecafMUD/src/js/decafmud.interface.panels.menu.js',
-  'DecafMUD/src/js/decafmud.interface.panels.settings.js',
-  'DecafMUD/src/js/dragelement.js',
-  'built/errorhandler.js',
-  'built/mume.macros.js',
-  'built/mume.menu.js',
-  'built/mume.mapper.js',
+  'manifest.webmanifest',
   'icons/icon-192x192.png',
-  'icons/icon-512x512.png'
-  // Ensure all previously listed paths are here, but made relative.
-  // The original list had '/' and '/index.html'. Consolidating to 'index.html' is fine.
-  // Other paths just need the leading '/' removed.
+  'icons/icon-512x512.png',
+  // Include other static assets copied by CopyWebpackPlugin if needed
+  // For now, focusing on core files and explicitly copied assets.
+  // mapdata/ and resources/ directories are copied, but listing every file
+  // might be excessive. We can add specific critical assets if needed.
 ];
 
 self.addEventListener('install', event => {

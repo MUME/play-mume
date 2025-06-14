@@ -15,10 +15,10 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-var globalErrorHandlerWasHit = false;
+let globalErrorHandlerWasHit = false;
 
 // Log the error in the Apache logs with a dummy URL
-window.onerror = function (msg: string | Event, file_loc?: string, line_no?: number, col_no?: number, error?: Error) {
+window.onerror = function (msg: string | Event, file_loc?: string, line_no?: number, col_no?: number, _error?: Error) {
     const col_no_str = (typeof col_no === "undefined") ? "" : col_no.toString();
     const file_loc_str = file_loc || "unknown_file";
     const line_no_str = (typeof line_no === "undefined") ? "" : line_no.toString();
@@ -32,7 +32,7 @@ window.onerror = function (msg: string | Event, file_loc?: string, line_no?: num
         message = "Unknown error";
     }
 
-    var url = '/mume/play/jserror'
+    const url = '/mume/play/jserror'
         + '?at=' + encodeURIComponent(file_loc_str + ":" + line_no_str + ":" + col_no_str)
         + "&msg=" + encodeURIComponent(message);
     const xhr: XMLHttpRequest = new XMLHttpRequest();

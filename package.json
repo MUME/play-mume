@@ -4,25 +4,38 @@
   "description": "Modern web client for MUME using DecafMUD",
   "main": "errorhandler.js",
   "scripts": {
-    "test": "npm run lint -- --fix",
+    "test": "npm run lint",
     "tsc": "tsc -p tsconfig.json",
-    "lint": "tslint .",
-    "build": "tsc -p tsconfig.json"
+    "lint": "eslint . --ext .js,.ts --fix",
+    "lint:check": "eslint . --ext .js,.ts",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "requirejs": "^2.3.5",
+    "jquery": "^3.7.1",
     "jquery-deferred": "^0.3.1",
-    "pixi.js": "^4.5.5",
-    "jquery": "^3.2.1",
-    "jquery-throttle-debounce": "^1.0.0",
     "spark-md5": "^3.0.0",
     "split.js": "^1.3.5"
   },
   "devDependencies": {
-    "@types/pixi.js": "v4.5.5",
-    "@types/jquery": "^3.2.1",
-    "tslint": "^6.1.3",
-    "typescript": "^2.6.2"
+    "@types/jquery": "^3.5.32",
+    "@types/spark-md5": "*",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "copy-webpack-plugin": "*",
+    "css-loader": "*",
+    "eslint": "^8.57.0",
+    "html-webpack-plugin": "*",
+    "pixi.js": "^8.10.1",
+    "sass": "*",
+    "sass-loader": "*",
+    "script-loader": "^0.7.2",
+    "style-loader": "*",
+    "ts-loader": "*",
+    "typescript": "^5.8.3",
+    "webpack": "*",
+    "webpack-cli": "*"
   },
   "engines": {
     "node": ">=8.9.0"
