@@ -1,0 +1,10 @@
+/*!
+ * DecafMUD v0.9.0
+ * http://decafmud.stendec.me
+ *
+ * Copyright 2010, Stendec <stendec365@gmail.com>
+ * Licensed under the MIT license.
+ *
+ * This is decafmud.interface.discworld.js from Discworld, but it is generic
+ * and can be included in the upstream.
+ */

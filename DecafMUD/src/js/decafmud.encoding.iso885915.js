@@ -1,0 +1,2 @@
+/*! For license information please see decafmud.encoding.iso885915.js.LICENSE.txt */
+!function(n){var e={"¤":"€","¦":"Š","¨":"š","´":"Ž","¸":"ž","¼":"Œ","½":"œ","¾":"Ÿ"},r="[",c="[",o={};for(var u in e)r+=u,c+=e[u],o[e[u]]=u;r=new RegExp(r+"]","g"),c=new RegExp(c+"]","g"),n.plugins.Encoding.iso885915={proper:"ISO-8859-15",decode:function(n){return[n.replace(r,function(n){return e[n]}),""]},encode:function(n){return n.replace(c,function(n){return o[n]})}}}(DecafMUD);
