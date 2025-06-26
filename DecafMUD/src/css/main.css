@@ -1,0 +1,325 @@
+/*
+ * Decaf MUD
+ * main.css
+ */
+
+body {
+  background: /*url(../images/Shadow2.png)*/ top center repeat-x #4f4e4c;
+  color: #FFF;
+  margin: 0;
+  height: 100%;
+  font-size: 75%;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  padding-bottom: 2em;
+}
+
+.mud-pane {
+  font-size: 110%;
+}
+
+div#head-cont {
+  background: /*url(../images/Shadow.png)*/ top center repeat-y #572c01;
+}
+
+div#heading {
+  width: 770px;
+  margin: 0 auto;
+  background: #FFF;
+  color: #000;
+  padding-top: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+div#logo {
+  background: url(../images/Logo.png) 10px 0px no-repeat;
+  min-height: 119px;
+  
+  position: relative;
+}
+
+div#logo > p {
+  color: #572c01;
+  position: absolute;
+  top: 15px;
+  left: 120px;
+  
+  font-size: 1.2em;
+}
+
+div#logo h1 { display: none; }
+
+div#download {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+}
+
+div#download a {
+  display: block;
+  width: 200px;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-align: center;
+  
+  background: #014112; 
+  color: #fff;
+  
+  border: 1px solid #002A0B;
+  
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+div#download a:hover, div#download a:focus { 
+  background: #035C1B;
+}
+
+div#download p {
+  padding-top: 5px;
+  text-align: right;
+  font-size: 0.8em;
+}
+
+div#menu {
+  width: 760px;
+}
+
+div#menu ul, div#menu ul li, div#subnav ul, div#subnav ul li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+div#menu ul, div#subnav ul {
+  float: right;
+  font-size: 0.8em;
+}
+
+div#menu ul li, div#subnav ul li {
+  float: left;
+  margin-left: 1px;
+  text-align: center;
+}
+
+div#menu a, div#subnav a {
+  float: left;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+div#menu a {  
+  background: #996736; 
+  color: #ffe5cc;
+}
+
+div#menu li:first-child a, div#subnav li:first-child a {
+  border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+}
+
+div#menu li:last-child a, div#subnav li:last-child a {
+  border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+
+div#menu a:hover, div#menu a:focus {
+  background-color: #ffd0a1;
+  color: #6b3600;
+}
+
+div#menu li.active a, div#menu li.active a:hover {
+  background: #131313;
+  color: #fff;
+}
+
+div#menu li.subnav.active a, div#menu li.subnav.active a:hover {
+  background: #222;
+}
+
+div#subnav {
+  background: #222;
+  padding-top: 5px;
+  padding-right: 25px;
+}
+
+div#subnav a {
+  background: #333;
+  color: #ccc;
+}
+
+div#subnav a:hover, div#subnav a:focus {
+  background-color: #777;
+  color: #000;
+}
+
+div#subnav li.active a, div#subnav li.active a:hover {
+  background: #131313;
+  color: #fff;
+} 
+
+.submenu {
+  position: absolute;
+  list-style-type: none;
+  padding: 5px 0px 0px 0px;
+  margin: 5px 0px 0px -5px;
+  visibility: hidden;
+  border-bottom: thin solid white;
+}
+
+.submenu li a {
+  color: white;
+  font-weight: bold;
+  border: thin solid white;
+  border-bottom: 0px;
+  margin: 0px;
+  width: 120px;
+  height: 20px;
+  padding: 5px 10px;
+  background-color: #333;
+  display: block;
+}
+
+.submenu li a:hover {
+  color: yellow;
+  text-decoration: none;
+  background-color: #666;
+}
+
+div#container {
+  background: url(../images/Shadow.png) top center repeat-y;
+  width: 830px;
+  margin: 0 auto;
+}
+
+div#container > div { margin: 0 30px; }
+
+div#content {
+  background: #131313;
+  padding: 15px 15px 0;
+}
+
+div#content hr { 
+  border: none;
+  border-bottom: 1px solid #222;
+}
+
+div#foot-cont {
+  width: 830px;
+  margin: 0 auto;
+  margin-top: 0px;
+  background: url(../images/Shadow3.png) top center repeat-x;
+  min-height: 45px;
+}
+
+div#foot-cont > span {
+  display: block;
+  height: 15px;
+}
+
+div#foot {
+  padding: 10px 45px;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+p { margin-top: 0; }
+h1,h2,h3 {
+  font: normal normal 2em "Trebuchet MS",Arial,sans-serif;
+  margin: 0;
+}
+h2{font-size:160%}
+h3{font-size:120%}
+
+.what-block pre {
+  display: block;
+  margin: 10px;
+  padding: 5px;
+  border: 1px dashed #408051;
+  background: #09120b;
+}
+code, pre {
+  font-family: Consolas, Courier, 'Courier New', 'Andale Mono', Monaco, monospace;
+}
+
+a {
+  color: #996736;
+  text-decoration: none;
+}
+a:hover, a:focus { text-decoration: underline; }
+
+a img { border:none; }
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 0.6em;
+}
+
+h3 {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+dt {
+  float: left;
+  clear: left;
+  width: 12em;
+  margin: 0 0 0 1em;
+  font-weight: bold;
+}
+
+dd {
+  margin: 0 0 0 13.5em;
+  padding: 0 0 0.5em 0;
+}
+
+a.fakebutton {
+  background-color: blue;
+  color: yellow;
+  padding: 5px;
+}
+
+a.fakebutton:hover {
+  text-decoration: none;
+}
+
+/* Some weird content rules */
+
+.screenshot {
+  float: right;
+  padding: 5px;
+  margin: 10px 0 10px 10px;
+  border: 1px solid #408051;
+  background: #09120b;
+  text-align: center;
+}
+.screenshot img {
+  display: block;
+  margin-bottom: 5px;
+}
+
+ul.spaced li {
+  margin-bottom: 5px;
+}
+
+.what-block h1, .what-block h2, .what-block h3, .what-block h4, .what-block h5, .what-block h6 {
+  font-size: 200%;
+  color: #ffe5cc;
+  margin-bottom: 5px;
+}
+
+.what-block p {
+  text-align: justify;
+}
+
+.what-block:last-child, .what-block:last-child *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.what-block {
+  margin-bottom: 30px;
+}
+
