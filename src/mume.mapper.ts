@@ -1014,14 +1014,17 @@ namespace Mm2Gfx
                 case 14:
                     name = "passivemob";
                     break;
-                case 14:
+                case 15:
                     name = "elitemob";
                     break;
-                case 15:
+                case 16:
                     name = "smob";
                     break;
-                case 16:
+                case 17:
                     name = "milkable";
+                    break;
+                case 18:
+                    name = "rattlesnake";
                     break;
                 default:
                   console.error("unable to load mob texture %d", extra);
