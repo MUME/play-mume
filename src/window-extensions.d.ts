@@ -41,6 +41,7 @@ declare global {
     mume_menu_rules?: () => void;
     mume_menu_about_map?: () => void;
     mume_menu_map_bug?: () => void;
+    tryExtraMacro?: (decaf: DecafMUDInstance, keycode: number) => number;
   }
 
 }
