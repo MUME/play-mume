@@ -21,11 +21,10 @@ Please contact the Valar on MUME before doing this. We'll discuss other options.
 Great! You'll need a little setup described below. If you get stuck, do not
 hesitate to contact the Valar on MUME!
 
-### Forking the repositories
+### Forking the repository
 
 The Github contribution workflow requires that you sign up on Github and fork
-the two repositories, [DecafMUD](https://github.com/MUME/DecafMUD/) and
-[Play MUME!](https://github.com/MUME/play-mume/).
+the repository, [Play MUME!](https://github.com/MUME/play-mume/).
 
 Doing so now will save you time later when you want to send pull requests.
 
@@ -39,28 +38,13 @@ repositories and sending pull requests.
 
 ### Getting the Source Code
 
-The `index.html` of this project expects to be installed alongside with
-DecafMUD, like this:
-
-    play/           # Clone of https://github.com/YOU/play-mume/
-        index.html  # point your browser here (/play/)
-        DecafMUD/   # Clone of https://github.com/YOU/DecafMUD/
-
-So, assuming you are in your project directory and are using the `git`
-command-line software, run:
+You'll need a clone of the repository. If you're using the command line, `cd`
+to the directory where you store your projects and run:
 
     git clone https://github.com/YOU/play-mume.git play
     cd play
-    git submodule update --init
-    cd DecafMUD
-    git remote add YOU https://github.com/YOU/DecafMud.git
-    git fetch YOU
-    git checkout YOU master
 
 Remember to replace `YOU` with your Github username.
-
-Adapt these instructions if you are using a graphical Git client to get the
-above directory layout.
 
 ### Compiling the Source Code
 
@@ -78,31 +62,13 @@ port 4000 running on node.js within a Docker container:
 #### Alternative
 
 If you do not want to use Docker you will need to set up your developer
-environment manually. You will need to install TypeScript compiler from
-https://www.typescriptlang.org and run in `play`:
+environment manually. First, install the dependencies:
 
-    tsc
+    npm install
 
-TypeScript is a superset of JavaScript that compiles to clean JavaScript
-output. It helps catching bugs before anybody even tests the code, letting me
-produce more features in less time. Try it with a [compatible
-editor](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
-and you'll love it too!
+Then, to build the project, run:
 
-#### Getting the Third-party Libraries
-
-Play MUME! relies on a few 3rd-party Javascript libraries. As I didn't
-integrate with NPM or Yarn yet, you'll have to download them by hand into the
-`node_modules/` directory. See `node_modules/README.txt` for the instructions.
-
-Or just grab the `libs` folder from a recent
-[release](https://github.com/MUME/play-mume/releases)'s
-`play-mume-vX.Y.Z.zip`.
-
-If you're using `docker-compose` you can enter into the container and grab the
-libraries out:
-
-    docker exec -it play_play-mume_1 sh
+    npm run dev
 
 ### Getting Map Data
 
@@ -110,9 +76,9 @@ The map data is an export of a MMapper map into a special web-friendly format
 that allows the browser to only load the surrounding area instead of the whole
 35k+ rooms.
 
-As the time of writing, that feature has yet to be included in a stable MMapper
-release. Instead, you can just grab the `mapdata` folder from a recent release
-`.zip`.
+MMapper has a feature to "Export Web Map" that will generate the required
+`mapdata` folder. Alternatively, you can grab the `mapdata` folder from a
+recent release `.zip`.
 
 ### Setting Up a Web Server
 
