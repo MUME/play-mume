@@ -728,7 +728,6 @@ var tCOMPRESSv2 = function(decaf) {
 	// Thanks, https://mudhalla.net/tintin/protocols/mccp/
 	this.decaf = decaf;
 	this.decaf.startCompressV2 = false;
-	this.decaf.loadScript('inflate_stream.min.js'); // https://github.com/imaya/zlib.js/blob/develop/bin/inflate_stream.min.js
 }
 tCOMPRESSv2.prototype._will = function() {
 	if (this.decaf.options.socket == 'flash') {
