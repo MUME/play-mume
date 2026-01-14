@@ -4,7 +4,6 @@
  * This file is originally from Discworld.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Potentially used by global event handlers or index.html
 function tryExtraMacro(decaf: DecafMUDInstance, keycode: number): number {
   // f-key macros
   if (112 <= keycode && keycode <= 121 && fkeys_enabled()) {
@@ -40,3 +39,5 @@ function tryExtraMacro(decaf: DecafMUDInstance, keycode: number): number {
   // anything else (not handled)
   return 0;
 }
+
+window.tryExtraMacro = tryExtraMacro;
